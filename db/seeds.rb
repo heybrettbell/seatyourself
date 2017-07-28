@@ -1,3 +1,6 @@
+Restaurant.destroy_all
+Reservation.destroy_all
+
 restaurant_list = [
   ["Il Ducce", "Italian", "A fine Italian experience with flair", 40, "21 Jump Street, Toronto, ON, M5H 1E4"],
   ["Fiddler's Green", "Pub", "Feel at home with comfort food and over 50 beers on tap.", 45, "1224 University Avenue, Toronto, ON, M6T 2R8"],
@@ -8,5 +11,14 @@ restaurant_list = [
 ]
 
 restaurant_list.each do |restaurant|
-  Restaurant.create(name: restaurant[0], cuisine: restaurant[1], description: restaurant[2], capacity: restaurant[3], address: restaurant[4])
+  restaurant = Restaurant.create!(name: restaurant[0], cuisine: restaurant[1], description: restaurant[2], capacity: restaurant[3], address: restaurant[4])
+  puts "#{restaurant.name} created"
+end
+
+3.times do
+  Reservation.create!(guests: 5, time: 6, restaurant: Restaurant.first)
+end
+
+3.times do
+  Reservation.create!(guests: 8, time: 6, restaurant: Restaurant.last)
 end
