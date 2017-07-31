@@ -19,9 +19,28 @@ class UsersController < ApplicationController
       flash[:notice] = "Welcome!"
       redirect_to root_path
     else
-      # flash.now[:alert] = @user.errors.full_messages
       render :new
     end
+  end
+
+  # to edit current user info we need to implement sessions
+  # def edit
+  #  @user = current_user
+  # end
+  #
+  # def update
+  #   @user = User.new(
+  #     email: params[:user][:email],
+  #     password: params[:user][:password],
+  #     password_confirmation: params[:user][:password_confirmation]
+  #   )
+  #
+  #   if @user.save
+  #     flash[:notice] = "Account Updated!"
+  #     redirect_to root_path
+  #   else
+  #     render :new
+  #   end
 
   end
 end
