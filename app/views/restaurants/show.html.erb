@@ -1,4 +1,4 @@
-<%= link_to 'All Restaurants', restaurant_path %>
+<%= link_to 'All Restaurants', restaurants_path %>
 
   <h2><%= @restaurant.name %></h2>
   <p><%= @restaurant.address %></p>
@@ -6,3 +6,5 @@
   <p><%= @restaurant.price_range %></p>
   <p><%= @restaurant.description %></p>
   <p><%= @restaurant.cuisine %></p>
+
+  <%= render 'reservations/new_reservation_form', restaurant: @restaurant, reservation: @reservation %>
