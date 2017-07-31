@@ -13,7 +13,7 @@ class ReservationsController < ApplicationController
     @reservation.time = params[:reservation][:time]
     @reservation.guests = params[:reservation][:guests]
     @reservation.restaurant_id = restaurant_id
-    @reservation.date = params[]
+    # @reservation.date = params[]
 
     if @reservation.save
       flash[:notice] = "You have successfully created a new reservation!"
