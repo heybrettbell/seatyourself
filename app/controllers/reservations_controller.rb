@@ -5,20 +5,25 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = Reservation.new
+    # @reservation = Reservation.new
+
     restaurant_id = params[:restaurant_id]
     @restaurant = Restaurant.find(restaurant_id)
+    @reservation = @restaurant.take_reservation(params[:reservation][:date],
+                                                params[:reservation][:time],
+                                                params[:reservation][:guests])
     @reservations = @restaurant.reservations
 
-    @reservation.time = params[:reservation][:time]
-    @reservation.guests = params[:reservation][:guests]
-    @reservation.restaurant_id = restaurant_id
-    # @reservation.date = params[]
+    # @reservation.time = params[:reservation][:time]
+    # @reservation.guests = params[:reservation][:guests]
+    # @reservation.restaurant_id = restaurant_id DON'T NEED B/C WE CALLED RESERVATIONS ON RESTAURANT
 
-    if @reservation.save
+
+    if @reservation.save 
       flash[:notice] = "You have successfully created a new reservation!"
       redirect_to restaurant_path(@restaurant.id)
     else
+      flash.now[:alert] = "Reservation not created"
       render 'restaurants/show'
     end
 

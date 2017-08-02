@@ -1,17 +1,17 @@
 class Restaurant < ApplicationRecord
   has_many :reservations
 
-  def take_reservation(time, guests)
-    total = dining_room_current_guests(time) + guests
-    if total < @restaurant.capacity
-      reservations.create(time: time, guests: guests)
+  def take_reservation(date, time, guests)
+    total = dining_room_current_guests(date, time) + guests.to_i
+    if total <= capacity
+      reservation = reservations.create(date: date, time: time, guests: guests)
     else
-      puts "Full try again!"
+      return reservations.build(date: date, time: time, guests: guests)
     end
   end
 
-  def dining_room_current_guests(time)
-    reservations.where(time: time).map { |reservation| reservation.guests }.sum
+  def dining_room_current_guests(date, time)
+    reservations.where(date: date, time: time).map { |reservation| reservation.guests }.sum
   end
 
   def has_capacity?
