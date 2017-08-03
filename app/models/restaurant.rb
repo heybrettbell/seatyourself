@@ -4,9 +4,11 @@ class Restaurant < ApplicationRecord
   def take_reservation(date, time, guests)
     total = dining_room_current_guests(date, time) + guests.to_i
     if total <= capacity
-      reservation = reservations.create(date: date, time: time, guests: guests)
+      # reservation = reservations.create(date: date, time: time, guests: guests)
+      return true
     else
-      return reservations.build(date: date, time: time, guests: guests)
+      # return reservations.build(date: date, time: time, guests: guests)
+      return false  
     end
   end
 
