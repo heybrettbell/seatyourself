@@ -8,4 +8,9 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user
+
+  def convert_date_select_params(subhash)
+    Date.new(params[subhash]["date(1i)"].to_i, params[subhash]["date(2i)"].to_i, params[subhash]["date(3i)"].to_i)
+  end
+
 end
