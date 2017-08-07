@@ -6,10 +6,6 @@ class RestaurantsController < ApplicationController
 
     def show
       @restaurant = Restaurant.find(params[:id])
-      unless current_user
-        redirect_to sessions_new_path
-      end
-
       @reservation = Reservation.new
     end
 

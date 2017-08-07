@@ -7,4 +7,8 @@
   <p><%= @restaurant.description %></p>
   <p><%= @restaurant.cuisine %></p>
 
+<% if current_user.present? %>
   <%= render 'reservations/reservation_form', restaurant: @restaurant, reservation: @reservation %>
+<% else %>
+<%= link_to 'Sign Up To Make A Reservation', new_user_path %>
+<% end %>
