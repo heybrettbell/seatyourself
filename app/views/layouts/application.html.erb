@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Seatyourself</title>
+  <title>Out To Lunch</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <!-- <%= link_to 'Create Account', new_user_path %> -->
-  <h1>Out to Lunch</h1>
+<div class="row">
+  <div class="col-md-8 vertical-align">
+  <h2>Out to Lunch</h2>
   <% if flash[:notice] %>
-    <p class="notice"><%= flash[:notice] %></p>
+      <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p><%= flash[:notice] %></p>
+      </div>
   <% end %>
   <% if flash[:alert] %>
-    <p class="alert"><%= flash[:alert] %></p>
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <p><%= flash[:alert] %></p>
+  </div>
   <% end %>
+</div>
+<div class="col-md-4 vertical-align">
   <p class="userinfo">
      <% if current_user %>
        Signed in as <%= current_user.email %>. <%= link_to "Log out", sessions_path("current"), :method => :delete %>
@@ -22,6 +32,7 @@
        <%= link_to "Log in", sessions_new_path %> or <%= link_to "Sign up", new_user_path %>
      <% end %>
    </p>
+ </div>
   <%= yield %>
 
  </body>
